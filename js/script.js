@@ -63,7 +63,7 @@ const btnSort = document.querySelector('.btn--sort');
 // input value
 const inputLoginUsername = document.querySelector('.login__input--user');
 const inputLoginPin = document.querySelector('.login__input--pin');
-const ipnutLoginPinUser = document.querySelector('.login__input')
+const inputLoginPinUser = document.querySelector('.login__input')
 const inputTransferTo = document.querySelector('.form__input--to');
 const inputTransferAmount = document.querySelector('.form__input--amount');
 const inputLoanAmount = document.querySelector('.form__input--loan-amount');
@@ -186,6 +186,6 @@ btnLogin.addEventListener('click', function (e) {
     currentAccount &&
     currentAccount.pin !== Number(inputLoginPin.value)
   ) {
-    inputLoginPin.style.borderColor = 'red';
+    inputLoginPinUser.style.borderColor = 'red';
   }
 });
