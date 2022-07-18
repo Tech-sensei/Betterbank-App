@@ -6,11 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <link
-      rel="icon"
-      type="image/x-icon"
-      href="./assets/images/Favicon.png"
-    />
+    <link rel="icon" type="image/x-icon" href="./assets/images/Favicon.png" />
 
     <!-- ================BOX ICONS===================== -->
     <link
@@ -41,7 +37,6 @@
     <!--==================== HEADER ====================-->
     <header class="header" id="header">
       <nav class="nav container">
-        
         <div class="nav__logo">
           <a href="#" class="nav__logo">
             <img src="./assets/images/Favicon.png" alt="Logo" /><span
@@ -50,10 +45,10 @@
           </a>
         </div>
 
-         <p class="welcome">Log in to get started</p>
+        <p class="welcome">Log in to get started</p>
 
         <div class="nav__menu" id="nav-menu">
-        <i class="fa fa-times-circle nav-close" aria-hidden="true"></i>
+          <i class="fa fa-times-circle nav-close" aria-hidden="true"></i>
 
           <form class="login">
             <input
@@ -63,7 +58,7 @@
             />
             <!-- In practice, use type="password" -->
             <input
-              type="text"
+              type="password"
               placeholder="pin"
               maxlength="4"
               class="login__input login__input--pin"
@@ -79,7 +74,6 @@
 
         <div class="nav__toggle" id="nav-toggle">
           <i class="bx bx-door-open"></i>
-
         </div>
       </nav>
     </header>
@@ -90,7 +84,7 @@
         <div class="account__container container flex">
           <div class="account__container--overview flex">
             <div class="overview__info">
-              <h4 class="main-account">Main account</h4>
+              <h4 class="date">As of 05/03/2037</h4>
               <h2 class="account-type">Savings Account</h2>
               <h3 class="account-number">
                 0319229058
@@ -101,7 +95,7 @@
                   <button class="btn">Transfer</button>
                 </a>
                 <a href="#">
-                  <button class="btn">Link account</button>
+                  <button class="btn-link">Link account</button>
                 </a>
               </div>
             </div>
@@ -173,6 +167,7 @@
                 type="text"
                 class="form__input form__input--airtime-to"
                 placeholder="Number"
+                 maxlength="11"
               />
               <input
                 type="number"
@@ -186,9 +181,6 @@
           </div>
 
           <div class="activity__container--action loan">
-            <label class="form__label form__label--loan"
-              >"Only 10% of the highest deposit will be loaned out"</label
-            >
             <h2 class="activity-header">Request loan</h2>
             <form class="form form--loan">
               <input
@@ -237,9 +229,9 @@
               <div class="movements">
                 <div class="movements__row">
                   <div class="movements__date">Today</div>
-                  <div class="movements__type movements__type--deposit">in</div>
+                  <div class="movements__type movements__type--IN">in</div>
                   <div class="movements__detail">Salary</div>
-                  <div class="movements__value movements__value--deposit flex">
+                  <div class="movements__value movements__value--IN flex">
                     ₦ 0000
                     <i class="fa fa-chevron-down" aria-hidden="true"></i>
                   </div>
@@ -247,14 +239,10 @@
 
                 <div class="movements__row">
                   <div class="movements__date">3 days ago</div>
-                  <div class="movements__type movements__type--withdrawal">
-                    Out
-                  </div>
+                  <div class="movements__type movements__type--OUT">Out</div>
                   <div class="movements__details">Expense</div>
 
-                  <div
-                    class="movements__value movements__type--withdrawal flex"
-                  >
+                  <div class="movements__value movements__type--OUT flex">
                     ₦ 0000
                     <i class="fa fa-chevron-down" aria-hidden="true"></i>
                   </div>
@@ -262,7 +250,34 @@
               </div>
             </div>
           </div>
-          <div class="transaction__container--overview"></div>
+          <div class="transaction__container--overview">
+            <div class="transaction__container--overview_contents">
+              <h2 class="overview__header flex">
+                Account Overview
+                <i class="fa fa-arrow-circle-right" aria-hidden="true"></i>
+              </h2>
+              
+              <div class="overview__summary">
+
+                <div class="summary-detail">
+                  <p class="summary__label">In</p>
+                  <p class="summary__value summary__value--in">0000€</p>
+                </div>
+
+                <div class="summary-detail">
+                  <p class="summary__label">Out</p>
+                  <p class="summary__value summary__value--out">0000€</p>
+                </div>
+
+                <div class="summary-detail">
+                  <p class="summary__label">Interest</p>
+                  <p class="summary__value summary__value--interest">0000€</p>
+                </div>
+
+                <button class="btn--sort">&downarrow; SORT</button>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
     </main>

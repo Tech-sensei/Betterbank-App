@@ -1,4 +1,4 @@
-@use "../abstracts" as a;
+@use '../abstracts' as a;
 
 /*==================== BASE ====================*/
 *,
@@ -20,6 +20,10 @@ body {
   color: var(--text-color);
   background-color: var(--body-color);
   background-color: black;
+}
+.main {
+  opacity: 0;
+  transition: all 1s;
 }
 
 h1,

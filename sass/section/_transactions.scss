@@ -6,6 +6,7 @@
       background-color: var(--body-color);
       height: 350px;
       flex: 2.5;
+      overflow: auto;
       border-radius: 0.5rem;
       &_contents {
         padding: 1rem;
@@ -15,9 +16,10 @@
           overflow: auto;
           justify-content: space-between;
           align-items: center;
+          padding: 0 0.5rem;
         }
         .movements__row {
-          padding: 2rem 0 1rem;
+          padding: 2rem 0.5rem 1rem;
           display: flex;
           align-items: center;
           justify-content: space-between;
@@ -31,13 +33,13 @@
           border-radius: 10rem;
           margin-right: 2rem;
         }
-        .movements__type--deposit,
-        .movements__value--deposit {
+        .movements__type--IN,
+        .movements__value--IN {
           color: #39b385;
         }
 
-        .movements__type--withdrawal,
-        .movements__value--withdrawal {
+        .movements__type--OUT,
+        .movements__value--OUT {
           color: #e52a5a;
         }
         .movements__value {
@@ -56,6 +58,57 @@
       height: 350px;
       flex: 2;
       border-radius: 0.5rem;
+      &_contents {
+        padding: 1rem;
+        .overview__header {
+          font-size: 2rem;
+          font-weight: 500;
+          overflow: auto;
+          justify-content: space-between;
+          align-items: center;
+          padding: 0 0.5rem;
+        }
+        .overview__summary {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding: 2rem 0.5rem 1rem;
+          border-bottom: 1px solid #eee;
+          .summary-detail {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            row-gap: 1rem;
+            .summary__label {
+              font-size: 1rem;
+              font-weight: 500;
+              text-transform: uppercase;
+            }
+
+            .summary__value {
+              font-size: 1.5rem;
+            }
+
+            .summary__value--in,
+            .summary__value--interest {
+              color: #66c873;
+            }
+
+            .summary__value--out {
+              color: #f5465d;
+            }
+          }
+          .btn--sort {
+            border: none;
+            background-color: #fff;
+            border-radius: 0.5rem;
+            font-size: 1.3rem;
+            padding: 0.5rem;
+            font-weight: 500;
+            cursor: pointer;
+          }
+        }
+      }
     }
   }
 }
@@ -68,6 +121,9 @@
   .transaction__container {
     flex-direction: row;
     &--movements_contents {
+      padding: 2rem;
+    }
+    &--overview_contents {
       padding: 2rem;
     }
   }

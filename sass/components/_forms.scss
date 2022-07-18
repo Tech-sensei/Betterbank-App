@@ -85,6 +85,11 @@
   color: inherit;
   transition: all 0.3s;
   background-color: rgba(255, 255, 255, 0.935);
+  background-image: linear-gradient(
+    to bottom right,
+    var(--body-color),
+    var(--container-color)
+  );
 }
 
 .login__input:focus {
