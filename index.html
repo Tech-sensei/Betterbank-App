@@ -30,7 +30,7 @@
     <link rel="stylesheet" href="./assets/css/swiper-bundle.min.css" />
 
     <!-- ==============TITLE LINKS================ -->
-    <title>FlyBank</title>
+    <title>etter Bank</title>
   </head>
 
   <body class="body">
@@ -65,6 +65,7 @@
             />
             <button class="login__btn">&rarr;</button>
           </form>
+          
         </div>
 
         <!-- <div class="nav__socials" id="nav-socials">
@@ -73,7 +74,7 @@
         </div> -->
 
         <div class="nav__toggle" id="nav-toggle">
-          <i class="bx bx-door-open"></i>
+          <button class="log-btn">Log in  <i class="bx bx-door-open"></i></button> 
         </div>
       </nav>
     </header>
@@ -102,7 +103,10 @@
 
             <div class="overview__balance">
               <h4 class="main-account">Available Funds</h4>
-              <h2 class="account-balance">₦ 2,300,210</h2>
+              <div class="balance">
+                <i class="fa fa-eye-slash balance-hide" aria-hidden="true"></i>
+                <h2 class="account-balance">₦ 2,300,210</h2>
+              </div>
             </div>
           </div>
 
@@ -140,7 +144,7 @@
       <section class="activity" id="activity">
         <div class="activity__container container grid">
           <div class="activity__container--action transfer">
-            <h2 class="activity-header">Transfer money</h2>
+            <h2 class="activity-header transfer-header">Transfer money</h2>
 
             <form class="form form--transfer">
               <input
@@ -160,7 +164,7 @@
           </div>
 
           <div class="activity__container--action Airtime">
-            <h2 class="activity-header">Airtime</h2>
+            <h2 class="activity-header airtime-header">Airtime</h2>
 
             <form class="form form--transfer">
               <input
@@ -181,7 +185,7 @@
           </div>
 
           <div class="activity__container--action loan">
-            <h2 class="activity-header">Request loan</h2>
+            <h2 class="activity-header loan-header">Request loan</h2>
             <form class="form form--loan">
               <input
                 type="number"
@@ -204,7 +208,7 @@
               />
               <input
                 type="password"
-                maxlength="6"
+                maxlength="4"
                 class="form__input form__input--pin"
                 placeholder="Confirm PIN"
               />

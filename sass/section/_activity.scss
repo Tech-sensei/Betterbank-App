@@ -20,7 +20,7 @@
     }
 
     .loan {
-      // background-image: linear-gradient(to bottom right, #39b385, #9be15d);
+      background-image: linear-gradient(to bottom right, #39b385, #9be15d);
       @media screen and (min-width: 768px) {
         grid-template-columns: 2.5fr 2.5fr 1fr;
         padding: 2rem 2rem;
@@ -28,7 +28,7 @@
     }
 
     .close {
-      // background-image: linear-gradient(to bottom right, #e52a5a, #ff585f);
+      background-image: linear-gradient(to bottom right, #e52a5a, #ff585f);
     }
   }
 }

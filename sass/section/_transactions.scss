@@ -3,7 +3,7 @@
   &__container {
     flex-direction: column;
     &--movements {
-      background-color: var(--body-color);
+        background-color: var(--container-color);
       height: 350px;
       flex: 2.5;
       overflow: auto;
@@ -17,6 +17,10 @@
           justify-content: space-between;
           align-items: center;
           padding: 0 0.5rem;
+        }
+        .movements{
+          height: 350px;
+          overflow:auto
         }
         .movements__row {
           padding: 2rem 0.5rem 1rem;
@@ -54,7 +58,7 @@
     }
 
     &--overview {
-      background-color: var(--body-color);
+       background-color: var(--container-color);
       height: 350px;
       flex: 2;
       border-radius: 0.5rem;

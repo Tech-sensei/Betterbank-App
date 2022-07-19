@@ -5,7 +5,7 @@
   &__container {
     flex-direction: column;
     &--overview {
-      background-color: var(--body-color);
+      background-color: var(--container-color);
       justify-content: space-between;
       flex: 3;
       border-radius: 0.5rem;
@@ -24,7 +24,6 @@
         .account-number {
           margin: 0 0 2rem;
           font-size: 1.95rem;
-          color: var(--container-color);
           span {
             color: var(--text-color);
             font-weight: 900;
@@ -45,7 +44,7 @@
             cursor: pointer;
           }
           .btn-link {
-            background-color: var(--container-color);
+            background-color: var(--body-color);
           }
         }
       }
@@ -61,6 +60,16 @@
           font-size: 2rem;
           margin: 1rem 0;
           font-weight: 900;
+        }
+        .balance {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 2rem;
+        .balance-hide {
+            font-size: 1.5rem;
+            margin: 0.5rem 0 0;
+          }
         }
       }
     }
@@ -86,7 +95,7 @@
         }
         &-summary {
           align-items: center;
-          margin: 2rem 0 1.5rem;
+          margin: 2rem 0 1rem;
           p {
             line-height: 1.5;
             font-size: 1.2rem;

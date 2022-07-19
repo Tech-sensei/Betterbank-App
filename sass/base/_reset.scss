@@ -19,7 +19,6 @@ body {
   background-attachment: fixed;
   color: var(--text-color);
   background-color: var(--body-color);
-  background-color: black;
 }
 .main {
   opacity: 0;
@@ -59,6 +58,6 @@ img {
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: var(--text-color);
+  background-color: var(--body-color);
   border-radius: 0.5rem;
 }

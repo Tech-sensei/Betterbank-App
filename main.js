@@ -44,14 +44,14 @@ const account1 = {
   interestRate: 1.2,
   pin: 5555,
   movementsDates: [
-    '2022-03-18T21:31:17.178Z',
     '2022-04-23T07:42:02.383Z',
     '2022-04-28T09:15:04.904Z',
-    '2022-04-01T10:17:24.185Z',
-    '2022-05-08T14:11:59.604Z',
+    '2022-05-15T21:31:17.178Z',
+    '2022-05-18T10:17:24.185Z',
+    '2022-06-08T14:11:59.604Z',
     '2022-06-27T17:01:17.194Z',
-    '2022-07-11T23:36:17.929Z',
-    '2022-07-12T10:51:36.790Z',
+    '2022-07-17T23:36:17.929Z',
+    '2022-07-18T10:51:36.790Z',
   ],
 };
 
@@ -61,14 +61,14 @@ const account2 = {
   interestRate: 1.5,
   pin: 1111,
   movementsDates: [
-    '2022-03-18T21:31:17.178Z',
     '2022-04-23T07:42:02.383Z',
     '2022-04-28T09:15:04.904Z',
-    '2022-04-01T10:17:24.185Z',
-    '2022-05-08T14:11:59.604Z',
+    '2022-05-15T21:31:17.178Z',
+    '2022-05-18T10:17:24.185Z',
+    '2022-06-08T14:11:59.604Z',
     '2022-06-27T17:01:17.194Z',
-    '2022-07-11T23:36:17.929Z',
-    '2022-07-12T10:51:36.790Z',
+    '2022-07-17T23:36:17.929Z',
+    '2022-07-18T10:51:36.790Z',
   ],
 };
 
@@ -99,8 +99,8 @@ const account4 = {
     '2022-04-23T07:42:02.383Z',
     '2022-04-28T09:15:04.904Z',
     '2022-04-01T10:17:24.185Z',
-    '2022-05-08T14:11:59.604Z',
     '2022-06-27T17:01:17.194Z',
+    '2022-07-08T14:11:59.604Z',
     '2022-07-11T23:36:17.929Z',
     '2022-07-12T10:51:36.790Z',
   ],
@@ -130,11 +130,14 @@ const accounts = [account1, account2, account3, account4, account5];
 // Value
 const labelWelcome = document.querySelector('.welcome');
 const labelBalance = document.querySelector('.account-balance');
+const labelBalanceHide = document.querySelector('.balance-hide');
 const labelDate = document.querySelector('.date');
 const labelSumIn = document.querySelector('.summary__value--in');
 const labelSumOut = document.querySelector('.summary__value--out');
 const labelSumInterest = document.querySelector('.summary__value--interest');
-// const labelTimer = document.querySelector('.timer');
+const labelTimer = document.querySelector('.timer');
+const labelTransfer = document.querySelector('.transfer-header');
+const labelAirtime = document.querySelector('.airtime-header');
 
 // Elements
 const containerApp = document.querySelector('.main');
@@ -160,11 +163,30 @@ const inputAirtimeAmount = document.querySelector(
   '.form__input--airtime-amount'
 );
 const inputLoanAmount = document.querySelector('.form__input--loan-amount');
+const labelloan = document.querySelector('.loan-header');
 
 const inputCloseUsername = document.querySelector('.form__input--user');
 const inputClosePin = document.querySelector('.form__input--pin');
 
 //IMPLEMENTING THE FUNCTIONALITIES
+
+// Implementing Transactions Date
+const locale = navigator.language;
+
+const formatDate = function (now, locale) {
+  const calcdaysPassed = (date1, date2) =>
+    Math.round(Math.abs(date1 - date2) / (1000 * 60 * 60 * 24));
+
+  const daysPassed = calcdaysPassed(new Date(), now);
+  if (daysPassed === 0) return 'Today';
+  if (daysPassed === 1) return 'Yesterday';
+  if (daysPassed <= 7) return `${daysPassed} days ago`;
+
+  // const day = `${now.getDate()}`.padStart(2, 0);
+  // const month = `${now.getMonth() + 1}`.padStart(2, 0);
+  // const year = now.getFullYear();
+  return new Intl.DateTimeFormat(locale).format(now);
+};
 
 // implementing the Transaction Movements
 
@@ -174,14 +196,9 @@ const displayMovements = function (curAcc) {
   curAcc.transactions.forEach((cur, i, arr) => {
     const type = cur > 0 ? 'IN' : 'OUT';
     const details = cur > 0 ? 'Salary' : 'Expenses';
-    // const randomInt = (min, max) =>
-    //   Math.trunc(Math.random() * (max - min) + 1) + min;
-    // const date = i % 2 === 0 ? 'Today' : `${randomInt(2, 4)} days ago`;
+
     const now = new Date(curAcc.movementsDates[i]);
-    const day = `${now.getDate()}`.padStart(2, 0);
-    const month = `${now.getMonth() + 1}`.padStart(2, 0);
-    const year = now.getFullYear();
-    const date = `${day}/${month}/${year}`;
+    const date = formatDate(now, locale);
 
     const movementHTML = `
     <div class="movements__row">
@@ -199,8 +216,16 @@ const displayMovements = function (curAcc) {
 
 //  implementing the Balance
 const calcDisplayBalance = function (curAcc) {
-  curAcc.balance = curAcc.transactions.reduce((acc, cur) => acc + cur, 0); //We created a new property on the currentaccount object. so that for every transaction going on the balance will be updating.
+  curAcc.balance = curAcc.transactions.reduce((acc, cur) => acc + cur, 0); //We created a new property on the currentAccount object. so that for every transaction going on the balance will be updating.
   labelBalance.innerHTML = `₦ ${curAcc.balance}`;
+
+  labelBalanceHide.addEventListener('click', function () {
+      labelBalance.innerHTML = '********';
+  });
+
+  labelBalanceHide.addEventListener('click', function () {
+    labelBalance.innerHTML = `₦ ${curAcc.balance}`;
+  });
 };
 
 // calcDisplayBalance(account1.transactions);
@@ -254,18 +279,26 @@ const updateUI = function (curAcc) {
   calcDisplaySummary(curAcc);
 };
 
+// labelBalanceHide.addEventListener('click',function(){
+//   labelBalance.innerHTML="********"
+// })
+
 // Validating the Username and Pin
 let currentAccount;
 
 btnLogin.addEventListener('click', function (e) {
   e.preventDefault();
+
   const date = new Date();
-  const day = `${date.getDate()}`.padStart(2, 0);
-  const month = `${date.getMonth() + 1}`.padStart(2, 0);
-  const year = date.getFullYear();
-  const hour = `${date.getHours()}`.padStart(2, 0);
-  const min = `${date.getMinutes()}`.padStart(2, 0);
-  labelDate.textContent = `${day}/${month}/${year}, ${hour}:${min}`;
+  const options = {
+    minute: 'numeric',
+    hour: 'numeric',
+    day: 'numeric',
+    month: 'numeric',
+    year: 'numeric',
+  };
+  const locale = navigator.language;
+  labelDate.textContent = new Intl.DateTimeFormat(locale, options).format(date);
 
   currentAccount = accounts.find(
     acc => acc.username === inputLoginUsername.value
@@ -277,8 +310,6 @@ btnLogin.addEventListener('click', function (e) {
 
     // Display Welcome Message
     labelWelcome.innerHTML = `Welcome, ${currentAccount.owner.split(' ')[0]}`;
-    const welcomeQuestion = `<p style="font-size:1.125rem; color:#39b385;">What would you like to do? 😊</p>`;
-    labelWelcome.insertAdjacentHTML('beforeend', welcomeQuestion);
 
     // Display Ui
     containerApp.style.opacity = 100;
@@ -318,12 +349,24 @@ btnTransfer.addEventListener('click', function (e) {
     currentAccount.balance >= amount &&
     receiverAcc?.username !== currentAccount.username
   ) {
+    setTimeout(function () {
+      // Add Transactions
+      currentAccount.transactions.push(-amount);
+
+      // Add Transfer date
+      currentAccount.movementsDates.push(new Date().toISOString());
+
+      // Update UI
+      updateUI(currentAccount);
+    }, 1500);
+    // const alert =
+
+    setTimeout(() => (labelTransfer.innerHTML = 'Success ✅'), 1500);
+    setTimeout(() => (labelTransfer.innerHTML = 'Transfer Money'), 2000);
+
     // Add Transactions
-    currentAccount.transactions.push(-amount);
     receiverAcc.transactions.push(amount);
 
-    // Add Transfer date
-    currentAccount.movementsDates.push(new Date().toISOString());
     receiverAcc.movementsDates.push(new Date().toISOString());
 
     // Update UI
@@ -337,13 +380,20 @@ btnAirtime.addEventListener('click', function (e) {
   const airtimeAmount = Number(inputAirtimeAmount.value);
 
   if (airtimeAmount > 0 && currentAccount.balance >= airtimeAmount) {
-    // Add Transactions
-    currentAccount.transactions.push(-airtimeAmount);
-    // Add Transfer date
-    currentAccount.movementsDates.push(new Date().toISOString());
+    setTimeout(function () {
+      // Add Transactions
+      currentAccount.transactions.push(-airtimeAmount);
 
-    // Update UI
-    updateUI(currentAccount);
+      // Add Transfer date
+      currentAccount.movementsDates.push(new Date().toISOString());
+
+      // Update UI
+      updateUI(currentAccount);
+    }, 1500);
+    // const alert =
+
+    setTimeout(() => (labelAirtime.innerHTML = 'Success ✅'), 1500);
+    setTimeout(() => (labelAirtime.innerHTML = 'Airtime'), 2000);
   } else if (inputAirtimeAmount.value == '') {
     console.log('enter amount');
   }
@@ -359,14 +409,21 @@ btnLoan.addEventListener('click', function (e) {
     amount > 0 &&
     currentAccount.transactions.some(cur => cur >= amount * 0.1)
   ) {
-    // Add Transactions
-    currentAccount.transactions.push(amount);
+    setTimeout(function () {
+      // Add movement
+      currentAccount.transactions.push(amount);
 
-    // Add loan date
-    currentAccount.movementsDates.push(new Date().toISOString());
+      // Add Loan date
+      currentAccount.movementsDates.push(new Date().toDateString());
 
-    // Update UI
-    updateUI(currentAccount);
+      // Update UI
+      updateUI(currentAccount);
+    }, 3500);
+    // const alert =
+
+    setTimeout(() => (labelloan.innerHTML = 'Waiting...'), 500);
+    setTimeout(() => (labelloan.innerHTML = 'Approved ✅'), 3500);
+    setTimeout(() => (labelloan.innerHTML = 'Request Loan'), 3800);
 
     inputLoanAmount.value = '';
   }
@@ -384,14 +441,14 @@ btnClose.addEventListener('click', function (e) {
     const index = accounts.findIndex(
       cur => cur.username === currentAccount.username
     );
-
+    labelWelcome.innerHTML = 'Log in to get started';
     // Delete account
     accounts.splice(index, 1);
 
     // Hide UI
     containerApp.style.opacity = 0;
+    // labelWelcome.insertAdjacentHTML() = '';
   }
 
   inputCloseUsername.value = inputClosePin.value = '';
 });
-
