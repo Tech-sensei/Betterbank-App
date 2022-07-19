@@ -131,6 +131,7 @@ const accounts = [account1, account2, account3, account4, account5];
 const labelWelcome = document.querySelector('.welcome');
 const labelBalance = document.querySelector('.account-balance');
 const labelBalanceHide = document.querySelector('.balance-hide');
+const labelBalanceIcon = document.querySelector('.balance-icon');
 const labelDate = document.querySelector('.date');
 const labelSumIn = document.querySelector('.summary__value--in');
 const labelSumOut = document.querySelector('.summary__value--out');
@@ -218,16 +219,18 @@ const displayMovements = function (curAcc) {
 const calcDisplayBalance = function (curAcc) {
   curAcc.balance = curAcc.transactions.reduce((acc, cur) => acc + cur, 0); //We created a new property on the currentAccount object. so that for every transaction going on the balance will be updating.
   labelBalance.innerHTML = `₦ ${curAcc.balance}`;
-
-  labelBalanceHide.addEventListener('click', function () {
-      labelBalance.innerHTML = '********';
-  });
-
-  labelBalanceHide.addEventListener('click', function () {
-    labelBalance.innerHTML = `₦ ${curAcc.balance}`;
-  });
 };
-
+// Implementing Hide Balance 
+  labelBalanceIcon.addEventListener('click', function () {
+    if ((labelBalance.innerHTML = `₦ ${currentAccount.balance}`)) {
+      labelBalance.classList.toggle('active-balance');
+      if ((labelBalance.innerHTML = `₦ ${currentAccount.balance} `)) {
+        labelBalanceHide.classList.toggle('active-balance');
+      } else {
+        labelBalanceHide.classList.remove('active-balance');
+      }
+    }
+  });
 // calcDisplayBalance(account1.transactions);
 
 // Implementing The summary
