@@ -8,7 +8,10 @@
 }
 
 .form.form--loan {
-  grid-template-columns: 2.5fr 1fr 2.5fr;
+  grid-template-columns: 2.5fr 1fr;
+  @media screen and (min-width: 576px) {
+    grid-template-columns: 2.5fr 2fr;
+  }
 }
 .form__label--loan {
   grid-row: 2;
@@ -32,7 +35,7 @@
 }
 
 .form__label {
-  font-size:1rem;
+  font-size: 1rem;
   text-align: center;
   @media screen and (max-width: 576px) {
     display: none;
