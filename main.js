@@ -73,7 +73,7 @@ const account2 = {
 };
 
 const account3 = {
-  owner: 'Olufolake Zion',
+  owner: 'Adegoke Iremide',
   transactions: [5000, 3400, -150, -790, -3210, -1000, 8500, -30],
   interestRate: 1.1,
   pin: 2222,
