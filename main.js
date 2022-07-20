@@ -458,7 +458,7 @@ btnLoan.addEventListener('click', function (e) {
 btnClose.addEventListener('click', function (e) {
   e.preventDefault();
   const confirmMessage = prompt(
-    'Are you sure you want to perform this operation??? Orderwise type NO'
+    'Are you sure you want to perform this operation???'
   );
   if (
     confirmMessage == 'null' ||
