@@ -457,7 +457,16 @@ btnLoan.addEventListener('click', function (e) {
 
 btnClose.addEventListener('click', function (e) {
   e.preventDefault();
-
+  const confirmMessage = prompt(
+    'Are you sure you want to perform this operation??? Orderwise type NO'
+  );
+  if (
+    confirmMessage == 'null' ||
+    confirmMessage == null ||
+    confirmMessage == ''
+  ) {
+    console.log('cancel');
+  }
   if (
     inputCloseUsername.value === currentAccount.username &&
     +inputClosePin.value === currentAccount.pin
@@ -465,15 +474,18 @@ btnClose.addEventListener('click', function (e) {
     const index = accounts.findIndex(
       cur => cur.username === currentAccount.username
     );
-    labelWelcome.innerHTML = 'Log in to get started';
+    if (confirmMessage !== null) {
+      console.log('cancel');
+      labelWelcome.innerHTML = 'Log in to get started';
 
-    // Delete account
-    accounts.splice(index, 1);
-    // Hide UI
-    containerApp.style.opacity = 0;
+      // Delete account
+      accounts.splice(index, 1);
+      // Hide UI
+      containerApp.style.opacity = 0;
 
-    // Replacing the Logout with Login btn
-    form.replaceChild(formLogin, button);
+      // Replacing the Logout with Login btn
+      form.replaceChild(formLogin, button);
+    }
   }
 
   inputCloseUsername.value = inputClosePin.value = '';
