@@ -3,7 +3,8 @@
   &__container {
     flex-direction: column;
     &--movements {
-        background-color: var(--container-color);
+      background-color: var(--container-color);
+      box-shadow: var(--box-shadow);
       height: 350px;
       flex: 2.5;
       overflow: auto;
@@ -17,10 +18,13 @@
           justify-content: space-between;
           align-items: center;
           padding: 0 0.5rem;
+          i {
+            color: var(--color-blue);
+          }
         }
-        .movements{
+        .movements {
           height: 350px;
-          overflow:auto
+          overflow: auto;
         }
         .movements__row {
           padding: 2rem 0.5rem 1rem;
@@ -58,7 +62,8 @@
     }
 
     &--overview {
-       background-color: var(--container-color);
+      background-color: var(--container-color);
+      box-shadow: var(--box-shadow);
       height: 350px;
       flex: 2;
       border-radius: 0.5rem;
@@ -71,6 +76,9 @@
           justify-content: space-between;
           align-items: center;
           padding: 0 0.5rem;
+          i {
+            color: var(--color-blue);
+          }
         }
         .overview__summary {
           display: flex;

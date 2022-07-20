@@ -141,6 +141,9 @@ const labelTransfer = document.querySelector('.transfer-header');
 const labelAirtime = document.querySelector('.airtime-header');
 
 // Elements
+const button = document.createElement('button');
+const formLogin = document.querySelector('.nav__menu');
+const form = document.querySelector('.nav');
 const containerApp = document.querySelector('.main');
 const containerMovements = document.querySelector('.movements');
 
@@ -220,17 +223,17 @@ const calcDisplayBalance = function (curAcc) {
   curAcc.balance = curAcc.transactions.reduce((acc, cur) => acc + cur, 0); //We created a new property on the currentAccount object. so that for every transaction going on the balance will be updating.
   labelBalance.innerHTML = `₦ ${curAcc.balance}`;
 };
-// Implementing Hide Balance 
-  labelBalanceIcon.addEventListener('click', function () {
-    if ((labelBalance.innerHTML = `₦ ${currentAccount.balance}`)) {
-      labelBalance.classList.toggle('active-balance');
-      if ((labelBalance.innerHTML = `₦ ${currentAccount.balance} `)) {
-        labelBalanceHide.classList.toggle('active-balance');
-      } else {
-        labelBalanceHide.classList.remove('active-balance');
-      }
+// Implementing Hide Balance
+labelBalanceIcon.addEventListener('click', function () {
+  if ((labelBalance.innerHTML = `₦ ${currentAccount.balance}`)) {
+    labelBalance.classList.toggle('active-balance');
+    if ((labelBalance.innerHTML = `₦ ${currentAccount.balance} `)) {
+      labelBalanceHide.classList.toggle('active-balance');
+    } else {
+      labelBalanceHide.classList.remove('active-balance');
     }
-  });
+  }
+});
 // calcDisplayBalance(account1.transactions);
 
 // Implementing The summary
@@ -282,13 +285,28 @@ const updateUI = function (curAcc) {
   calcDisplaySummary(curAcc);
 };
 
-// labelBalanceHide.addEventListener('click',function(){
-//   labelBalance.innerHTML="********"
-// })
+const displayLogOut = function () {
+  button.className = 'logout-btn';
+  button.classList.add('active-btn');
+  button.innerHTML = 'Log out <i class="bx bx-door-open"></i>';
+
+  form.append(button);
+
+  // form.replaceChild(formChild, button);
+  form.replaceChild(button, formLogin);
+  button.addEventListener('click', function () {
+    console.log('clicked');
+    // Hide Ui
+    containerApp.style.opacity = 0;
+    labelWelcome.innerHTML = 'Log in to get started';
+    form.replaceChild(formLogin, button);
+  });
+};
 
 // Validating the Username and Pin
 let currentAccount;
 
+// Implementing Login button
 btnLogin.addEventListener('click', function (e) {
   e.preventDefault();
 
@@ -310,6 +328,9 @@ btnLogin.addEventListener('click', function (e) {
   // console.log(currentAccount);
   if (currentAccount && currentAccount.pin === Number(inputLoginPin.value)) {
     // Display Welcome message and Ui
+
+    // Calling Logout function
+    displayLogOut();
 
     // Display Welcome Message
     labelWelcome.innerHTML = `Welcome, ${currentAccount.owner.split(' ')[0]}`;
@@ -365,7 +386,7 @@ btnTransfer.addEventListener('click', function (e) {
     // const alert =
 
     setTimeout(() => (labelTransfer.innerHTML = 'Success ✅'), 1500);
-    setTimeout(() => (labelTransfer.innerHTML = 'Transfer Money'), 2000);
+    setTimeout(() => (labelTransfer.innerHTML = 'Transfer'), 2000);
 
     // Add Transactions
     receiverAcc.transactions.push(amount);
@@ -445,12 +466,14 @@ btnClose.addEventListener('click', function (e) {
       cur => cur.username === currentAccount.username
     );
     labelWelcome.innerHTML = 'Log in to get started';
+
     // Delete account
     accounts.splice(index, 1);
-
     // Hide UI
     containerApp.style.opacity = 0;
-    // labelWelcome.insertAdjacentHTML() = '';
+
+    // Replacing the Logout with Login btn
+    form.replaceChild(formLogin, button);
   }
 
   inputCloseUsername.value = inputClosePin.value = '';

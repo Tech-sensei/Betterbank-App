@@ -22,7 +22,7 @@ body {
 }
 .main {
   opacity: 0;
-  transition: all 1s;
+  transition: all .5s;
 }
 
 h1,
@@ -58,6 +58,6 @@ img {
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: var(--body-color);
+  background-color: var(--container-color);
   border-radius: 0.5rem;
 }

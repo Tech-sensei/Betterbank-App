@@ -2,33 +2,34 @@
   &__container {
     grid-template-columns: repeat(2, 1fr);
     &--action {
-      background-color: var(--body-color);
-      background-image: linear-gradient(
-        to bottom right,
-        var(--body-color),
-        var(--container-color)
-      );
+      background-color: var(--container-color);
+      box-shadow: var(--box-shadow);
       border-radius: 0.5rem;
       padding: 1rem;
-
-      .activity-header {
+      .activity-title {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
         margin-bottom: 1.5rem;
-        font-size: 1.7rem;
-        font-weight: 600;
-        color: var(--text-color);
+        img{
+          width: 20px;
+          margin-bottom: 2rem;
+        }
+        .activity-header {
+          margin-bottom: 1.5rem;
+          font-size: 1.7rem;
+          font-weight: 600;
+          color: var(--text-color);
+        }
       }
     }
 
     .loan {
-      background-image: linear-gradient(to bottom right, #39b385, #9be15d);
+      // background-image: linear-gradient(to bottom right, #39b385, #9be15d);
       @media screen and (min-width: 768px) {
         grid-template-columns: 2.5fr 2.5fr 1fr;
         padding: 2rem 2rem;
       }
-    }
-
-    .close {
-      background-image: linear-gradient(to bottom right, #e52a5a, #ff585f);
     }
   }
 }

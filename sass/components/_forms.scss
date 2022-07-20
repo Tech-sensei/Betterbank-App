@@ -20,6 +20,8 @@
   width: 100%;
   border: none;
   background-color: rgba(255, 255, 255, 0.935);
+  box-shadow: var(--box-shadow);
+  background-color: var(--body-color);
   font-family: inherit;
   font-size: 1.5rem;
   text-align: center;
@@ -51,9 +53,11 @@
   border-radius: 0.4rem;
   font-size: 1.3rem;
   text-align: center;
-  background-color: #fff;
+  background-color: var(--body-color);
+  box-shadow: var(--box-shadow);
   cursor: pointer;
   transition: all 0.3s;
+  width: max-content;
 }
 
 .form__btn:focus {
@@ -87,11 +91,7 @@
   color: inherit;
   transition: all 0.3s;
   background-color: rgba(255, 255, 255, 0.935);
-  background-image: linear-gradient(
-    to bottom right,
-    var(--body-color),
-    var(--container-color)
-  );
+  box-shadow: var(--box-shadow);
 }
 
 .login__input:focus {
