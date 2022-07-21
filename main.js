@@ -199,7 +199,7 @@ const displayMovements = function (curAcc) {
 
   curAcc.transactions.forEach((cur, i, arr) => {
     const type = cur > 0 ? 'IN' : 'OUT';
-    const details = cur > 0 ? 'Salary' : 'Expenses';
+    const details = cur > 0 ? 'Earnings' : 'Expenses';
 
     const now = new Date(curAcc.movementsDates[i]);
     const date = formatDate(now, locale);
@@ -227,6 +227,9 @@ const calcDisplayBalance = function (curAcc) {
 labelBalanceIcon.addEventListener('click', function () {
   if ((labelBalance.innerHTML = `₦ ${currentAccount.balance}`)) {
     labelBalance.classList.toggle('active-balance');
+    if (labelBalanceIcon.classList.contains('fa-eye')) {
+      labelBalanceIcon.classList.toggle('fa-eye-slash');
+    }
     if ((labelBalance.innerHTML = `₦ ${currentAccount.balance} `)) {
       labelBalanceHide.classList.toggle('active-balance');
     } else {
