@@ -441,7 +441,7 @@ btnLoan.addEventListener('click', function (e) {
       currentAccount.transactions.push(amount);
 
       // Add Loan date
-      currentAccount.movementsDates.push(new Date().toDateString());
+      currentAccount.movementsDates.push(new Date().toISOString());
 
       // Update UI
       updateUI(currentAccount);
@@ -493,3 +493,5 @@ btnClose.addEventListener('click', function (e) {
 
   inputCloseUsername.value = inputClosePin.value = '';
 });
+const x = new Date().toDateString();
+console.log(x);
